@@ -53,10 +53,13 @@ def get_random():
     dog_images = [data["message"]]
     # Extract the breed name from the dog_image
     breed = re.compile("breeds/(.*)$").search(dog_images[0]).group(1).split("/")[0]
+    try:
+        breed = prettify_dog_breed(breed)
+    except KeyError:
+        breed = "Random Doggo"
+
     random = True
-    return render_template(
-        "dogs.html", images=dog_images, random=random, breed=prettify_dog_breed(breed)
-    )
+    return render_template("dogs.html", images=dog_images, random=random, breed=breed)
 
 
 app.debug = True
