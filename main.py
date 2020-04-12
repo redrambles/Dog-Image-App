@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import requests
+import re
 
 
 """
@@ -50,8 +51,12 @@ def get_random():
     response = requests.get("https://dog.ceo/api/breeds/image/random")
     data = response.json()
     dog_images = [data["message"]]
+    # Extract the breed name from the dog_image
+    breed = re.compile("breeds/(.*)$").search(dog_images[0]).group(1).split("/")[0]
     random = True
-    return render_template("dogs.html", images=dog_images, random=random)
+    return render_template(
+        "dogs.html", images=dog_images, random=random, breed=prettify_dog_breed(breed)
+    )
 
 
 app.debug = True

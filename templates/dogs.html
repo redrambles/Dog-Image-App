@@ -176,11 +176,8 @@
   </div>
 
   <div class="content">
-    {% if random %}
-      <h3>Random Doggo Image</h3>
-    {% else %}
-      <h3>{{breed}}</h3>
-    {% endif %}
+
+    <h3>{{breed}}</h3>
 
     {% for image in images %}
     <div class="dogcontainer">
