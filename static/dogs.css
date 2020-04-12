@@ -46,6 +46,12 @@ form {
   margin: auto;
 }
 
+#dogform {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
 select{
   padding: 11px;
   font-size: 16px;
@@ -106,6 +112,17 @@ select.dog-selector.option {
 .dogimage {
   width: 100%;
   height: auto;
- 
 
+}
+
+.errors {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+}
+
+.error {
+  color: tomato;
+  padding: 1em;
 }

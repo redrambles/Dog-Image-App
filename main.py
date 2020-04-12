@@ -35,11 +35,13 @@ def dog_image_gallery():
                 + number
             )
             data = response.json()
+            print(data)
             dog_images = data["message"]
             return render_template(
                 "dogs.html", images=dog_images, breed=prettify_dog_breed(breed)
             )
 
+    # If you get here, you've made a GET request
     return render_template("dogs.html", errors=errors)
 
 
