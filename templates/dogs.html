@@ -1,5 +1,6 @@
 <html>
 <head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel= "stylesheet" type= "text/css" href= "{{ url_for('static',filename='dogs.css') }}">
   <link href="https://fonts.googleapis.com/css?family=Rozha+One&display=swap" rel="stylesheet"> 
  <link href="https://fonts.googleapis.com/css?family=Red+Hat+Display:400,700&display=swap" rel="stylesheet"> 
@@ -16,12 +17,14 @@
   </div>
   <div class="selectors">
     <form action="/" method="POST" id="dogform">
+
       <select name="number">
         <option value="">Select number of images</option>
         <option value="1">1</option>
         <option value="3">3</option>
         <option value="5">5</option>
       </select>
+
       <select class="dog-selector" name="breed">
         <option value="">Select a dog breed</option>
         <option value="affenpinscher">Affenpinscher</option>
@@ -158,27 +161,30 @@
         <option value="whippet">Whippet</option>
         <option value="wolfhound-irish">Irish Wolfhound</option>
       </select>
+
       <button type="submit" form="dogform" value="Submit">Submit</button>
+
     </form>
   </div>
+
   <p>OR</p>
+
   <div class="selectors">
     <form action="/random" method="POST" id="randomdogform">
- 
       <button type="submit" form="randomdogform" value="Submit">Random Image</button>
     </form>
   </div>
+
   <div class="content">
-    {% if random %}
-      <h3>Random Doggo Image</h3>
-    {% else %}
-      <h3>{{breed}}</h3>
-    {% endif %}
+
+    <h3>{{breed}}</h3>
+
     {% for image in images %}
     <div class="dogcontainer">
       <img class="dogimage" src={{image}}>
     </div>
     {% endfor %}
+
   </div>
 </body>
 </html>

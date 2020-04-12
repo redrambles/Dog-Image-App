@@ -1,5 +1,6 @@
 from flask import Flask, render_template, request
 import requests
+import re
 
 
 """
@@ -35,11 +36,13 @@ def dog_image_gallery():
                 + number
             )
             data = response.json()
+            print(data)
             dog_images = data["message"]
             return render_template(
                 "dogs.html", images=dog_images, breed=prettify_dog_breed(breed)
             )
 
+    # If you get here, you've made a GET request
     return render_template("dogs.html", errors=errors)
 
 
@@ -47,9 +50,15 @@ def dog_image_gallery():
 def get_random():
     response = requests.get("https://dog.ceo/api/breeds/image/random")
     data = response.json()
+    print(data)
     dog_images = [data["message"]]
+    # Extract the breed name from the dog_image
+    breed = re.compile("breeds/(.*)$").search(dog_images[0]).group(1).split("/")[0]
+    print(type(breed))
     random = True
-    return render_template("dogs.html", images=dog_images, random=random)
+    return render_template(
+        "dogs.html", images=dog_images, random=random, breed=prettify_dog_breed(breed)
+    )
 
 
 app.debug = True
