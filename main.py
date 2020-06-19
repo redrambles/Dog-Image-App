@@ -58,8 +58,9 @@ def get_random():
     except KeyError:
         breed = "Random Doggo"
 
-    random = True
-    return render_template("dogs.html", images=dog_images, random=random, breed=breed)
+    # random = True
+    # return render_template("dogs.html", images=dog_images, random=random, breed=breed)
+    return render_template("dogs.html", images=dog_images, breed=breed)
 
 
 app.debug = True
